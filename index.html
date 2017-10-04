@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Psychic Games
+	</title>
+</head>
+<body>
+
+<h1>The Psychic Game</h1>
+
+<div id="game"></div>
+
+<script type="text/javascript">
+
+	//array of options for the computer to choose from
+	var computerOptions = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+
+	//variable for score
+	var wins = 0;
+	var losses = 0;
+	var chances = 9;
+
+	//generates a random answer for the computer
+	var random = computerOptions[Math.floor(Math.random() * computerOptions.length)];
+
+
+	//event to collect input from user
+	document.onkeyup = function(){
+		var userGuess = event.key;
+		alert(userGuess);
+
+	//condition for user guessing right
+		if(userGuess == random)
+		{
+			wins++;
+			chances = 9;
+			random = computerOptions[Math.floor(Math.random() * computerOptions.length)];
+		}
+
+	//conditions for guessing wrong and losing
+		else
+		{
+			chances--;
+
+			if(chances == 0)
+			{
+				losses++;
+				chances = 9;
+			}
+		}
+
+		var score = 
+		
+		"<p>Wins: " + wins + "</p>"
+		+ "<p>Losses: " + losses + "</p>" 
+		+ "<p>Guesses Left: " + chances + "</p>" 
+	 	+ "<p>Your Guesses so far: " + userGuess +"</p>"
+	  	
+	  	//test output
+	  	// + "<p>comp Guesses so far: " + random +"</p>";
+
+	  	//writes to the html document
+	  	document.querySelector("#game").innerHTML=score;	  	
+	}
+
+</script>
+
+
+</body>
+</html>
